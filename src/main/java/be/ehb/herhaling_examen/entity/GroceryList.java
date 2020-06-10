@@ -20,6 +20,10 @@ public class GroceryList {
     public GroceryList() {
     }
 
+    public GroceryList(int id) {
+        this.id = id;
+    }
+
     public GroceryList(String name, double unitPrice, int stock, String category) {
         this.name = name;
         this.unitPrice = unitPrice;

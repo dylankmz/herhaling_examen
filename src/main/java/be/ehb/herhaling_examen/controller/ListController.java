@@ -60,4 +60,26 @@ public class ListController {
         return subtotal;
     }
 
+    @RequestMapping(value = "/items/update", method = RequestMethod.PUT)
+    @ResponseBody
+    public void updateItem(@RequestParam(value = "id") int id,
+                           @RequestParam(value = "name") String name,
+                           @RequestParam(value = "unitPrice") double unitPrice,
+                           @RequestParam(value = "stock") int stock,
+                           @RequestParam(value = "category") String category) {
+
+        GroceryList updatedItem = new GroceryList(name, unitPrice, stock, category);
+        updatedItem.setId(id);
+        groceryListDAO.save(updatedItem);
+    }
+
+    @RequestMapping(value = "items/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteItem(@RequestParam(value = "id") int id) {
+
+        GroceryList deletedItem = new GroceryList(id);
+        deletedItem.setId(id);
+        groceryListDAO.deleteById(id);
+    }
+
 }

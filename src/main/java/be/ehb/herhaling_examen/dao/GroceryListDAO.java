@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GroceryListDAO extends CrudRepository<GroceryList, Integer> {
     public List<GroceryList> findAllByCategory(String category);
+    List<GroceryList> deleteById(int id);
 }
