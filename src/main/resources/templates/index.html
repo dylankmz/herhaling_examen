@@ -30,7 +30,8 @@
         <td th:text="${item.name}"></td>
         <td th:text="${item.unitPrice}"></td>
         <td th:text="${item.stock}"></td>
-        <td th:text="${item.category}"></td>
+        <td th:text="${item.category}"></td>                   
+        <td><a th:href="@{/delete/{id}(id=${item.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

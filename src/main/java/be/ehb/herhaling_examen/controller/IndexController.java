@@ -4,11 +4,10 @@ import be.ehb.herhaling_examen.dao.GroceryListDAO;
 import be.ehb.herhaling_examen.entity.GroceryList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class IndexController {
@@ -32,6 +31,15 @@ public class IndexController {
     @ModelAttribute("new_item")
     public GroceryList createNew() {
         return new GroceryList();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id, Model model) {
+        GroceryList item = groceryListDAO.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Product Id:" + id));
+        groceryListDAO.delete(item);
+        model.addAttribute("delete_item", groceryListDAO.findAll());
+        return "redirect:/index";
     }
 
     //Item maken, saven en redirecten naar index

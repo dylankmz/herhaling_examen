@@ -4,6 +4,8 @@ import be.ehb.herhaling_examen.dao.GroceryListDAO;
 import be.ehb.herhaling_examen.entity.GroceryList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,8 +57,8 @@ public class ListController {
         Iterable<GroceryList> items = groceryListDAO.findAll();
         double subtotal = 0;
 
-        for (GroceryList i :items
-             ) {
+        for (GroceryList i : items
+        ) {
             subtotal = subtotal + (i.getUnitPrice() * i.getStock());
         }
         return subtotal;
@@ -79,11 +81,14 @@ public class ListController {
     //Item verwijderen op id
     @RequestMapping(value = "items/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteItem(@RequestParam(value = "id") int id) {
+    public void deleteItem(@ModelAttribute("delete_item") GroceryList deleteItem, BindingResult result, ModelMap map,
+                           @RequestParam(value = "id") int id) {
 
         GroceryList deletedItem = new GroceryList(id);
         deletedItem.setId(id);
         groceryListDAO.deleteById(id);
     }
+
+
 
 }
