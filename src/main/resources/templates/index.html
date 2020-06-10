@@ -7,10 +7,10 @@
 </head>
 <body>
 <form method="post" th:action="@{/index}" th:object="${new_item}">
-    Name: <input type="text" name="name" th:field="*{name}">
-    Price Per Unit: <input type="text" name="unitprice" th:field="*{unitPrice}">
-    Stock: <input type="number" name="stock" th:field="*{stock}">
-    Category: <input type="text" name="category" th:field="*{category}">
+    Name: <input type="text" name="name" th:field="*{name}"><br>
+    Price Per Unit: <input type="text" name="unitprice" th:field="*{unitPrice}"><br>
+    Stock: <input type="number" name="stock" th:field="*{stock}"><br>
+    Category: <input type="text" name="category" th:field="*{category}"><br>
     <input type="submit" value="Submit" name="submit">
     <br><br>
 </form>
