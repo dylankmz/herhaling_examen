@@ -47,4 +47,17 @@ public class ListController {
         groceryListDAO.save(newItem);
     }
 
+    @RequestMapping(value = "/items/", method = RequestMethod.GET)
+    @ResponseBody
+    public double getTotal() {
+        Iterable<GroceryList> items = groceryListDAO.findAll();
+        double subtotal = 0;
+
+        for (GroceryList i :items
+             ) {
+            subtotal = subtotal + (i.getUnitPrice() * i.getStock());
+        }
+        return subtotal;
+    }
+
 }
