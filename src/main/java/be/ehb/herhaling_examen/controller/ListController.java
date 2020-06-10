@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,6 +30,21 @@ public class ListController {
     }
 
     //Opvragen van items per categorie
-    @RequestMapping(value = )
+    @RequestMapping(value = "/items/cat", method = RequestMethod.GET)
+    @ResponseBody
+    public List<GroceryList> getItemsOnCategory(@RequestParam(value = "category") String category) {
+        return groceryListDAO.findAllByCategory(category);
+    }
+
+    @RequestMapping(value = "items/new", method = RequestMethod.GET)
+    @ResponseBody
+    public void makeItem(@RequestParam(value = "name") String name,
+                         @RequestParam(value = "unitPrice") double unitPrice,
+                         @RequestParam(value = "stock") int stock,
+                         @RequestParam(value = "category") String category) {
+
+        GroceryList newItem = new GroceryList(name, unitPrice, stock, category);
+        groceryListDAO.save(newItem);
+    }
 
 }

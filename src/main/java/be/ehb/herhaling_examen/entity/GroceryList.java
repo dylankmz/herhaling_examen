@@ -2,14 +2,15 @@ package be.ehb.herhaling_examen.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "herhaling_examen")
 @Entity
 public class GroceryList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
     private String name;
     private double unitPrice;
@@ -19,8 +20,7 @@ public class GroceryList {
     public GroceryList() {
     }
 
-    public GroceryList(int id, String name, double unitPrice, int stock, String category) {
-        this.id = id;
+    public GroceryList(String name, double unitPrice, int stock, String category) {
         this.name = name;
         this.unitPrice = unitPrice;
         this.stock = stock;
