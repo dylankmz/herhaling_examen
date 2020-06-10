@@ -1,0 +1,12 @@
+tr td {
+    margin: 15px;
+    padding: 15px;
+}
+
+.list:nth-child(odd) {
+    background-color: beige;
+}
+
+.title {
+    background-color: aquamarine;
+}

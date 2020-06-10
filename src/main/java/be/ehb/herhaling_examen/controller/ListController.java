@@ -36,6 +36,7 @@ public class ListController {
         return groceryListDAO.findAllByCategory(category);
     }
 
+    //Nieuwe item maken
     @RequestMapping(value = "items/new", method = RequestMethod.GET)
     @ResponseBody
     public void makeItem(@RequestParam(value = "name") String name,
@@ -47,6 +48,7 @@ public class ListController {
         groceryListDAO.save(newItem);
     }
 
+    //Totaal berekenen van alle items
     @RequestMapping(value = "/items/", method = RequestMethod.GET)
     @ResponseBody
     public double getTotal() {
@@ -60,6 +62,7 @@ public class ListController {
         return subtotal;
     }
 
+    //Een item updaten
     @RequestMapping(value = "/items/update", method = RequestMethod.PUT)
     @ResponseBody
     public void updateItem(@RequestParam(value = "id") int id,
@@ -73,6 +76,7 @@ public class ListController {
         groceryListDAO.save(updatedItem);
     }
 
+    //Item verwijderen op id
     @RequestMapping(value = "items/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteItem(@RequestParam(value = "id") int id) {
