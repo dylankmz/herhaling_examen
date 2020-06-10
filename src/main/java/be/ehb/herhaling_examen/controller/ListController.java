@@ -89,6 +89,4 @@ public class ListController {
         groceryListDAO.deleteById(id);
     }
 
-
-
 }

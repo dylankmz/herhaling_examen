@@ -33,6 +33,7 @@ public class IndexController {
         return new GroceryList();
     }
 
+    //Item op de view verwijderen
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") int id, Model model) {
         GroceryList item = groceryListDAO.findById(id)
